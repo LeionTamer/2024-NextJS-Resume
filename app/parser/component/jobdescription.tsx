@@ -8,8 +8,10 @@ import { useState } from 'react'
 import { parseDescription } from './action'
 import ReactMarkdown from 'react-markdown'
 import { useCtrlEnter } from '@/hooks/useCtrlEnter'
+import { defaultSystemMessage } from './type'
 
 export function JobDescription() {
+  const [systemMessage, setSystemMessage] = useState(defaultSystemMessage)
   const [description, setDescription] = useState('')
 
   const { mutate, isPending, data } = useMutation({
@@ -27,6 +29,16 @@ export function JobDescription() {
   return (
     <>
       <div className="flex flex-col gap-5 p-2">
+        <div>
+          <Label htmlFor="system">System Message</Label>
+          <Textarea
+            disabled={isPending}
+            className="h-72"
+            id="system"
+            value={systemMessage}
+            onChange={(e) => setSystemMessage(e.target.value)}
+          />
+        </div>
         <div>
           <Label htmlFor="description">Description</Label>
           <Textarea
