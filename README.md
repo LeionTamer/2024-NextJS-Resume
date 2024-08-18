@@ -65,6 +65,8 @@ Changes in the `app/layout.tsx`
 
 ## Optional DX libraries
 
+### prettier-eslint package and configuration
+
 Install the prettier-eslint package and add the configuration file to format the codes
 
 ```bash
@@ -90,6 +92,8 @@ Create a `.prettierrc` file</summary>
 
 <br/>
 
+### ShadCDN UI library
+
 Install ShadCDN to make use of the component library
 
 ```bash
@@ -101,4 +105,34 @@ You can opt to install the other components later
 
 ```
 npx shadcn-ui@latest add button card input textarea select
+```
+
+<br />
+
+### Tailwindcss extension for prettier
+
+Install the tailwind-prettier extension to sort your tailwind classes
+
+```bash
+npm install -D prettier prettier-plugin-tailwindcss
+```
+
+Update the `.prettierrc` file with the addition of
+
+```json
+{
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
+```
+
+### App Layout with fixed header and footer
+
+To have a fixed header and footer, we use the grid-row-templates and have the body section take up 1 whole frame.
+
+```html
+<div className="grid min-h-screen grid-rows-[auto_1fr_auto]">
+  <div className="bg-slate-500">headers go here</div>
+  <div>{children}</div>
+  <div className="bg-slate-500">footers go here</div>
+</div>
 ```

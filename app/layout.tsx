@@ -18,7 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <div className="grid min-h-screen grid-rows-[auto_1fr_auto]">
+            <div className="bg-slate-500">headers go here</div>
+            <div>{children}</div>
+            <div className="bg-slate-500">footers go here</div>
+          </div>
+        </body>
       </Providers>
     </html>
   )
