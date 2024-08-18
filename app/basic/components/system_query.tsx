@@ -6,6 +6,7 @@ import { runQuery } from './actions'
 import { useState } from 'react'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import ReactMarkdown from 'react-markdown'
 
 function SystemQuery() {
   const { mutate, isPending, data } = useMutation({
@@ -43,7 +44,11 @@ function SystemQuery() {
           Run Query
         </Button>
       </div>
-      {data && <div className="m-5">{data}</div>}
+      {data && (
+        <div className="m-5">
+          <ReactMarkdown>{data}</ReactMarkdown>
+        </div>
+      )}
     </div>
   )
 }

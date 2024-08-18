@@ -136,3 +136,17 @@ To have a fixed header and footer, we use the grid-row-templates and have the bo
   <div className="bg-slate-500">footers go here</div>
 </div>
 ```
+
+### Add Markdown support with react-markdown
+
+Install the package
+
+```bash
+npm install react-markdown
+```
+
+import the component
+
+```typescript
+import ReactMarkdown from 'react-markdown'
+```
