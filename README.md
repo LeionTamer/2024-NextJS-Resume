@@ -145,7 +145,7 @@ Install the package
 npm install react-markdown
 ```
 
-import the component
+Import the component
 
 ```typescript
 import ReactMarkdown from 'react-markdown'

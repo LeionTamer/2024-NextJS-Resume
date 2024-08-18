@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { useMutation } from '@tanstack/react-query'
 import { runQuery } from './actions'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import ReactMarkdown from 'react-markdown'
@@ -15,6 +15,28 @@ function SystemQuery() {
 
   const [systemMessage, setSystemMessage] = useState('')
   const [userMessage, setUserMessage] = useState('')
+
+  useEffect(() => {
+    // Handler function to capture Ctrl + Enter
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && event.key === 'Enter') {
+        event.preventDefault() // Prevent the default action if necessary
+        // Add your custom logic here
+        if (!isPending && userMessage.length > 3) {
+          mutate({ systemMessage, userMessage })
+        }
+      }
+    }
+
+    // Add event listener
+    window.addEventListener('keydown', handleKeyDown)
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userMessage, systemMessage])
 
   return (
     <div className="flex flex-col gap-5 p-2">
@@ -45,9 +67,11 @@ function SystemQuery() {
         </Button>
       </div>
       {data && (
-        <div className="m-5">
-          <ReactMarkdown>{data}</ReactMarkdown>
-        </div>
+        <>
+          <div className="m-5">
+            <ReactMarkdown>{data}</ReactMarkdown>
+          </div>
+        </>
       )}
     </div>
   )
