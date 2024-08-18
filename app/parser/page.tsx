@@ -1,5 +1,11 @@
+import { JobDescription } from './component/jobdescription'
+
 function ParserPage() {
-  return <>Parser Page</>
+  return (
+    <>
+      <JobDescription />
+    </>
+  )
 }
 
 export default ParserPage
