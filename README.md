@@ -63,6 +63,19 @@ Changes in the `app/layout.tsx`
 
 <br />
 
+## Working with OpenAI structured output
+
+As of this writing, we will need the model 'gpt-4o-2024-08-06' in ChatGPT to leverage the JSO structured output
+As a requirement of the API call, we need to define a zod schema and use the zodResponse format from openai SDK
+
+See https://openai.com/index/introducing-structured-outputs-in-the-api/
+
+to install zod:
+
+```bash
+npm i zod
+```
+
 ## Optional DX libraries
 
 ### prettier-eslint package and configuration

@@ -1,10 +1,14 @@
 'use server'
 
 import { openai } from '@/lib/openai'
+import { zodResponseFormat } from 'openai/helpers/zod.mjs'
+import { parsedDescriptionSchema } from './type'
 
 export async function parseDescription({
+  systemMessage,
   description,
 }: {
+  systemMessage: string
   description: string
 }) {
   const response = await openai.beta.chat.completions.parse({
@@ -12,10 +16,19 @@ export async function parseDescription({
     messages: [
       {
         role: 'system',
+        content: systemMessage,
+      },
+      {
+        role: 'user',
         content: description,
       },
     ],
+    response_format: zodResponseFormat(parsedDescriptionSchema, 'parser'),
   })
 
-  return response.choices[0].message.content
+  const message = response.choices[0].message
+
+  console.table(message.parsed)
+
+  return message.content
 }

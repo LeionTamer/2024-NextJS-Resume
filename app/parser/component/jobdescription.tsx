@@ -20,7 +20,7 @@ export function JobDescription() {
 
   function handleGenerate() {
     if (!isPending || description.length > 3) {
-      mutate({ description })
+      mutate({ description, systemMessage })
     }
   }
 
@@ -50,7 +50,10 @@ export function JobDescription() {
           />
         </div>
         <div>
-          <Button disabled={isPending || description.length <= 3}>
+          <Button
+            disabled={isPending || description.length <= 3}
+            onClick={() => handleGenerate()}
+          >
             Generate
           </Button>
         </div>
