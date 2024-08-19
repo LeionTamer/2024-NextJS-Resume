@@ -59,7 +59,7 @@ export function JobDescription() {
         </div>
         {!!data && (
           <div>
-            <ReactMarkdown>{data}</ReactMarkdown>
+            <ReactMarkdown>{JSON.stringify(data)}</ReactMarkdown>
           </div>
         )}
       </div>
