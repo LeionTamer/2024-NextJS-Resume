@@ -6,7 +6,10 @@ export const parsedDescriptionSchema = z.object({
   techStack: z.string(),
   experienceLevel: z.string(),
   projectManagmentTools: z.string(),
+  additionalRequirements: z.string().optional(),
 })
+
+// we can update everything here to plain english
 
 export type ParsedDescriptionType = z.infer<typeof parsedDescriptionSchema>
 
@@ -19,6 +22,7 @@ Soft Skills: [List of soft skills, e.g., communication, teamwork, problem-solvin
 Tech Stack: [List of technologies, e.g., React, Node.js, AWS]
 Experience Level: [e.g., Entry-level, Mid-level, Senior]
 Project Management Tools: [List of tools, e.g., Jira, Trello, Asana]
+Additional Requiremenst: [e.g., NV clearance, Educational requirements]
 
 Your summary should highlight the key strengths and qualifications, presenting a coherent snapshot of the individual's skills and experience. Keep it to 3-5 sentences.`
 

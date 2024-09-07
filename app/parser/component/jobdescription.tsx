@@ -6,9 +6,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 import { parseDescription } from './action'
-import ReactMarkdown from 'react-markdown'
 import { useCtrlEnter } from '@/hooks/useCtrlEnter'
-import { defaultSystemMessage } from './type'
+import { defaultSystemMessage, ParsedDescriptionType } from './type'
 
 export function JobDescription() {
   const [systemMessage, setSystemMessage] = useState(defaultSystemMessage)
@@ -58,9 +57,17 @@ export function JobDescription() {
           </Button>
         </div>
         {!!data && (
-          <div>
-            <ReactMarkdown>{JSON.stringify(data)}</ReactMarkdown>
-          </div>
+          <>
+            {Object.keys(data).map((key) => {
+              const value = data[key as keyof ParsedDescriptionType]
+              return (
+                <div key={key}>
+                  <Label>{key}</Label>
+                  {value}
+                </div>
+              )
+            })}
+          </>
         )}
       </div>
     </>
